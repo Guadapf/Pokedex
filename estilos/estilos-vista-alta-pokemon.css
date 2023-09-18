@@ -1,0 +1,66 @@
+#titulo-formulario {
+    margin-bottom: 1.25em;
+    font-size: 28px;
+}
+
+form {
+    max-width: 66%;
+}
+
+form div {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 1.5em 0;
+}
+
+form, form > div > *, input[type="submit"] {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e8bcb9;
+}
+
+form, input, select {
+    padding: 1em;
+}
+
+input[type="text"] {
+    border-style: none none solid none;
+    border-bottom: 3px solid #451952;
+}
+
+input[type="text"]:focus {
+    outline-style: none;
+    border-bottom: 3px solid #ae445a;
+}
+
+input[type="text"], select {
+    padding-bottom: 0.05em;
+    border-radius: 5px 5px 0 0;
+    background-color: #451952;
+}
+select {
+    border-style: none;
+
+}
+
+input[type="file"] {
+    padding-bottom: 0;
+}
+
+/* input[type="submit"] {
+    padding: 0.5em;
+    border: 2px solid #1d1a39;
+    border-radius: 5px;
+    outline: solid 2px #e8bcb9;
+    background-color: #1d1a39;
+    color: #e8bcb9;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+input[type="submit"]:hover {
+    background-color: #e8bcb9;
+    color: #1d1a39;
+    cursor: pointer;
+} */
