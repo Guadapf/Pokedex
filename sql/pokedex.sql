@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-09-2023 a las 18:59:49
+-- Tiempo de generación: 18-09-2023 a las 15:19:01
 -- Versión del servidor: 10.4.28-MariaDB
--- Versión de PHP: 8.0.28
+-- Versión de PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `pokedex`
 --
-CREATE DATABASE IF NOT EXISTS `pokedex` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `pokedex`;
 
 -- --------------------------------------------------------
 
@@ -32,9 +30,18 @@ USE `pokedex`;
 CREATE TABLE `pokemon` (
   `id_pokemon` int(11) NOT NULL,
   `nombre` varchar(50) NOT NULL,
-  `descripcion` varchar(50) NOT NULL,
-  `imagen` mediumblob NOT NULL
+  `directorio_imagen` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `pokemon`
+--
+
+INSERT INTO `pokemon` (`id_pokemon`, `nombre`, `directorio_imagen`) VALUES
+(4, 'Eevee', 'assets/fotos-pokemon/Eevee.webp'),
+(6, 'Bulbasaur', 'assets/fotos-pokemon/Bulbasaur.webp'),
+(7, 'Charmander', 'assets/fotos-pokemon/Charmander.webp'),
+(8, 'Squirtle', 'assets/fotos-pokemon/Squirtle.webp');
 
 -- --------------------------------------------------------
 
@@ -47,6 +54,17 @@ CREATE TABLE `pokemon_tipo` (
   `id_pokemon` int(11) NOT NULL,
   `id_tipo` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `pokemon_tipo`
+--
+
+INSERT INTO `pokemon_tipo` (`id_pok_tip`, `id_pokemon`, `id_tipo`) VALUES
+(2, 4, 4),
+(3, 6, 7),
+(4, 6, 8),
+(5, 7, 5),
+(6, 8, 6);
 
 -- --------------------------------------------------------
 
@@ -67,8 +85,20 @@ CREATE TABLE `rol` (
 
 CREATE TABLE `tipo` (
   `id_tipo` int(11) NOT NULL,
-  `descripcion` varchar(50) NOT NULL
+  `descripcion` varchar(50) NOT NULL,
+  `directorio_imagen` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Volcado de datos para la tabla `tipo`
+--
+
+INSERT INTO `tipo` (`id_tipo`, `descripcion`, `directorio_imagen`) VALUES
+(4, 'Normal', './assets/fotos-tipo/Tipo_normal.webp'),
+(5, 'Fuego', './assets/fotos-tipo/Tipo_fuego.webp'),
+(6, 'Agua', './assets/fotos-tipo/Tipo_agua.webp'),
+(7, 'Planta', './assets/fotos-tipo/Tipo_planta.webp'),
+(8, 'Veneno', './assets/fotos-tipo/Tipo_veneno.webp');
 
 -- --------------------------------------------------------
 
@@ -128,13 +158,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `pokemon`
 --
 ALTER TABLE `pokemon`
-  MODIFY `id_pokemon` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pokemon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `pokemon_tipo`
 --
 ALTER TABLE `pokemon_tipo`
-  MODIFY `id_pok_tip` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pok_tip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`
@@ -146,7 +176,7 @@ ALTER TABLE `rol`
 -- AUTO_INCREMENT de la tabla `tipo`
 --
 ALTER TABLE `tipo`
-  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
