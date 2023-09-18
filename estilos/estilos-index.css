@@ -1,0 +1,44 @@
+.tarjeta-pokemon {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    max-width: 20%;
+    padding: 1em;
+    border-top: 1px solid #f39f5a;
+    border-bottom: 1px solid #f39f5a;
+}
+
+.info-pokemon {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+}
+
+.botones-tarjeta {
+    position: absolute;
+}
+
+.botones-tarjeta i {
+    margin-right: 0.15em;
+    padding: 0.1em;
+    border-radius: 5px;
+    background-color: #e8bcb9;
+    color: #1d1a39; 
+    opacity: 0;   
+}
+
+.tarjeta-pokemon:hover i {
+    opacity: 0.75;
+}
+
+.botones-tarjeta i:hover {
+    opacity: 1;
+    background-color: white;
+}
+
+#contenedor-tarjetas {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 1.5em 0;
+}
