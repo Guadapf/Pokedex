@@ -17,7 +17,7 @@ $pokes = consulta("SELECT * FROM `pokemon`;");
     <header>
         <h1>¡POKÉDEX!</h1>
         <div>
-            <a href="" class="enlace-grande boton-grande"><i class="material-icons">person</i> Iniciar sesión</a>
+            <a href="vista-login.php" class="enlace-grande boton-grande"><i class="material-icons">person</i> Iniciar sesión</a>
         </div>
     </header>
     <main>
