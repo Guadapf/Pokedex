@@ -1,6 +1,7 @@
 <?php
 session_start();
 $_SESSION ["error"]= "Nombre y/o contraseña incorrectos";
+$_SESSION ["admin"] = false;
 
 $conexion = mysqli_connect("localhost", "root", "", "pokedex");
 
@@ -12,6 +13,7 @@ if(mysqli_connect_errno()){
 if(isset($_POST["nombre"]) && isset($_POST["password"])){
     $nombre = $_POST["nombre"];
     $password = $_POST["password"];
+    $_SESSION["nombre"] = $nombre;
 
     $query = "SELECT r.descripcion FROM usuario u JOIN rol r ON u.id_rol = r.id_rol WHERE u.nombre = '$nombre' AND u.password = '$password';";
     $resultado = mysqli_query($conexion, "$query");
@@ -19,18 +21,14 @@ if(isset($_POST["nombre"]) && isset($_POST["password"])){
     if($resultado !== false){
         $rol = mysqli_fetch_assoc($resultado);
         if($rol["descripcion"] == "admin") {
-            //redirigir a home con vista de admin
-            header("Location: index.php");
-            exit();
-        } else {
-            //redirigir a home con vista de usuario
-            header("Location: index.php");
-            exit();
+            $_SESSION["admin"] = true;
         }
     } else {
         header("Location: vista-login.php");
         exit();
     }
+    header("Location: index.php");
+    exit();
 }
 
 mysqli_close($conexion);
