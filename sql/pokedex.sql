@@ -22,7 +22,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+CREATE DATABASE IF NOT EXISTS `pokedex` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `pokedex`;
 --
 -- Estructura de tabla para la tabla `pokemon`
 --
