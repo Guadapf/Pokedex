@@ -1,7 +1,8 @@
 <?php
 require_once("./funcionalidad/funciones.php");
-
+session_start();
 $pokes = consulta("SELECT * FROM `pokemon`;");
+$esAdmin = isset($_SESSION["admin"]) && $_SESSION["admin"];
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,18 +18,33 @@ $pokes = consulta("SELECT * FROM `pokemon`;");
     <header>
         <h1>¡POKÉDEX!</h1>
         <div>
-            <a href="vista-login.php" class="enlace-grande boton-grande"><i class="material-icons">person</i> Iniciar sesión</a>
+            <?php
+            if(isset($_SESSION["nombre"])){
+                echo "<p style='margin-right: 10px; display: inline; font-size: large'>¡Hola " . $_SESSION["nombre"] . "!</p>";
+                echo "<a href='cerrar-sesion.php' class='enlace-grande boton-grande'>Cerrar Sesion</a>";
+            }else {
+                echo "<a href='vista-login.php' class='enlace-grande boton-grande'><i class='material-icons'>person</i> Iniciar sesión</a>";
+            }
+            ?>
         </div>
     </header>
     <main>
-        <a href="vista-alta-pokemon.php" class="enlace-grande boton-grande"><i class="material-icons">add</i> Agregar un Pokémon</a>
+        <?php
+        if($esAdmin){
+            echo "<a href='vista-alta-pokemon.php' class='enlace-grande boton-grande'><i class='material-icons'>add</i> Agregar un Pokémon</a>";
+        }
+        ?>
         <section id="contenedor-tarjetas">
             <?php while ($fila_pok = mysqli_fetch_assoc($pokes)) { ?>
                 <article class="tarjeta-pokemon">
-                    <div class="botones-tarjeta">
-                        <a href=""><i class="material-icons">edit</i></a>
-                        <a href=""><i class="material-icons">delete</i></a>
-                    </div>
+                    <?php
+                    if($esAdmin){
+                        echo "<div class='botones-tarjeta'>
+                                  <a href=''><i class='material-icons'>edit</i></a>
+                                  <a href=''><i class='material-icons'>delete</i></a>
+                              </div>";
+                    }
+                    ?>
                     <img src="<?php echo $fila_pok["directorio_imagen"]; ?>" alt="Foto del pokémon <?php echo $fila_pok["nombre"]; ?>">
                     <div class="info-pokemon">
                         <p><?php echo $fila_pok["nombre"]; ?></p>
