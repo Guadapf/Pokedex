@@ -29,14 +29,26 @@ $esAdmin = isset($_SESSION["admin"]) && $_SESSION["admin"];
         </div>
     </header>
     <main>
+        <div id="buscador" class="row">
+            <form action="" method="get">
+                <input name="pokemonBuscado" class="col-11" type="text" placeholder="Cual es su pokemon">
+                <button col-1" type="submit">Buscar</button>
+            </form>
+        </div>
         <?php
         if($esAdmin){
             echo "<a href='vista-alta-pokemon.php' class='enlace-grande boton-grande'><i class='material-icons'>add</i> Agregar un Pokémon</a>";
         }
         ?>
         <section id="contenedor-tarjetas">
-            <?php while ($fila_pok = mysqli_fetch_assoc($pokes)) { ?>
+            <?php
+            if(isset($_GET['pokemonBuscado'])){
+                $nombrePokemon = $_GET['pokemonBuscado'];
+                $pokes = consulta("Select * from pokemon WHERE nombre LIKE '%$nombrePokemon%'");
+            }
+            while ($fila_pok = mysqli_fetch_assoc($pokes)) { ?>
                 <article class="tarjeta-pokemon">
+
                     <?php
                     if($esAdmin){
                         echo "<div class='botones-tarjeta'>
@@ -47,7 +59,7 @@ $esAdmin = isset($_SESSION["admin"]) && $_SESSION["admin"];
                     ?>
                     <img src="<?php echo $fila_pok["directorio_imagen"]; ?>" alt="Foto del pokémon <?php echo $fila_pok["nombre"]; ?>">
                     <div class="info-pokemon">
-                        <p><?php echo $fila_pok["nombre"]; ?></p>
+                        <?php echo "<a href='vistaPokemon.php?id=" . $fila_pok["id_pokemon"] . "'> <p> " . $fila_pok["nombre"] . "</p></a>" ?>
                         <div class="tipos">
                             <?php
                             $idPok = $fila_pok["id_pokemon"];
