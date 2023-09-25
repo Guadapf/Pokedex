@@ -1,7 +1,21 @@
 <?php
 require_once("./funcionalidad/funciones.php");
 $tipos = consulta("SELECT * FROM tipo;");
-if ( isset($_POST["nombre"]) && isset($_POST["tipos"])) {
+if (isset($_GET["id"])) {
+    $pokemon = mysqli_fetch_assoc(consulta("SELECT * FROM pokemon WHERE id_pokemon = " . $_GET["id"] . ";"));
+    $tiposDelPokemon = [];
+    $resultadoTipos = consulta("SELECT id_tipo FROM pokemon_tipo WHERE id_pokemon = " . $pokemon["id_pokemon"] .";");
+    while ($fila = mysqli_fetch_assoc($resultadoTipos)) {
+        array_push($tiposDelPokemon, $fila["id_tipo"]);
+    }
+    if (isset($_POST["nombre"]) && isset($_POST["tipos"])) {
+        if (isset($_FILES["foto"]) && $dirImagen = subirArchivo($_FILES["foto"], $_POST["nombre"]))
+        {
+            moificarImagen($pokemon["id_pokemon"], $dirImagen);
+        }
+        modificar($pokemon["id_pokemon"], $_POST["nombre"], $_POST["tipos"], $tiposDelPokemon);
+    }
+} elseif (isset($_POST["nombre"]) && isset($_POST["tipos"])) {
     if (isset($_FILES["foto"]))
     {
         $dirImagen = subirArchivo($_FILES["foto"], $_POST["nombre"]);
@@ -31,13 +45,27 @@ if ( isset($_POST["nombre"]) && isset($_POST["tipos"])) {
         <form action="" method="post" enctype="multipart/form-data">
             <div>
                 <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre">
+                <input type="text" name="nombre" id="nombre"
+                <?php
+                if (isset($_GET["id"])) {
+                    echo "value='" . $pokemon["nombre"] . "'";
+                }
+                ?>>
             </div>
             <div>
             <p>Elegí el tipo:</p>
                 <?php while($fila = mysqli_fetch_assoc($tipos)) { ?>
                 <label for="<?php echo $fila["descripcion"]; ?>"><?php echo $fila["descripcion"]; ?></label>
-                <input type="checkbox" name="tipos[]" value="<?php echo $fila["id_tipo"]; ?>" id="<?php echo $fila["descripcion"]; ?>">
+                <input type="checkbox" name="tipos[]" value="<?php echo $fila["id_tipo"]; ?>" id="<?php echo $fila["descripcion"]; ?>"
+                <?php
+                if (isset($_GET["id"])) {
+                    foreach ($tiposDelPokemon as $tipoDelPokemon) {
+                        if ($tipoDelPokemon == $fila["id_tipo"]) {
+                            echo "checked";
+                        }
+                    }
+                }
+                ?>>
                 <?php } ?>
             </div>
             <div>

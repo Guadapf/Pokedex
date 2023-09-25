@@ -52,7 +52,7 @@ $esAdmin = isset($_SESSION["admin"]) && $_SESSION["admin"];
                     <?php
                     if($esAdmin){
                         echo "<div class='botones-tarjeta'>
-                                  <a href=''><i class='material-icons'>edit</i></a>
+                                  <a href='vista-alta-pokemon.php?id=" . $fila_pok["id_pokemon"] . "'><i class='material-icons'>edit</i></a>
                                   <a href=''><i class='material-icons'>delete</i></a>
                               </div>";
                     }

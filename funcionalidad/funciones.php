@@ -10,7 +10,7 @@ function consulta ($sql)
 
 function altaPokemon ($nombre, $tipos, $dirImagen)
 {
-    consulta("INSERT INTO `pokemon` (`nombre`, `directorio_imagen`) VALUES ('$nombre', '$dirImagen')");
+    consulta("INSERT INTO `pokemon` (`nombre`, `directorio_imagen`) VALUES ('$nombre', '$dirImagen');");
     $idPokemon = mysqli_fetch_assoc(consulta("SELECT id_pokemon FROM `pokemon` WHERE `nombre` = '$nombre';"))["id_pokemon"];
     foreach ($tipos as $tipo)
     {
@@ -30,4 +30,20 @@ function subirArchivo($archivo, $nombre) {
     }
     move_uploaded_file($archivo["tmp_name"], "assets/fotos-pokemon/" . $archivo["name"]);
     return "assets/fotos-pokemon/" . $archivo["name"];
+}
+
+function moificarImagen($idPokemon, $dirImagen) {
+    consulta("UPDATE `pokemon` SET `directorio_imagen` = '$dirImagen' WHERE id_pokemon = $idPokemon;");
+}
+
+function modificar($idPokemon, $nombre, $tiposNuevos, $tiposViejos) {
+    consulta("UPDATE `pokemon` SET `nombre` = '$nombre' WHERE id_pokemon = $idPokemon;");
+    foreach ($tiposViejos as $tipo)
+    {
+        consulta("DELETE FROM `pokemon_tipo` WHERE id_pokemon = $idPokemon;");
+    }
+    foreach ($tiposNuevos as $tipo)
+    {
+        consulta("INSERT INTO `pokemon_tipo` (id_pokemon, id_tipo) VALUES ($idPokemon, $tipo);");
+    }
 }
