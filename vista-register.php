@@ -23,6 +23,9 @@ session_start();
 <body>
     <header>
         <a href="index.php"><h1>¡POKÉDEX!</h1></a>
+        <div>
+            <a href='vista-login.php' class='enlace-grande boton-grande'><i class='material-icons'>person</i> Iniciar sesión</a>
+        </div>
     </header>
     <main>
         <section class="contenedor">

@@ -16,7 +16,7 @@ $esAdmin = isset($_SESSION["admin"]) && $_SESSION["admin"];
 </head>
 <body>
     <header>
-        <h1>¡POKÉDEX!</h1>
+        <a href="index.php"><h1>¡POKÉDEX!</h1></a>
         <div>
             <?php
             if(isset($_SESSION["nombre"])){
@@ -29,17 +29,20 @@ $esAdmin = isset($_SESSION["admin"]) && $_SESSION["admin"];
         </div>
     </header>
     <main>
-        <div id="buscador" class="row">
+        <div class="group">
             <form action="" method="get">
-                <input name="pokemonBuscado" class="col-11" type="text" placeholder="Cual es su pokemon">
-                <button col-1" type="submit">Buscar</button>
+                <span class="material-icons icon">search</span>
+                <input name="pokemonBuscado" placeholder="Cual es su pokemon" type="search" class="input">
             </form>
         </div>
-        <?php
-        if($esAdmin){
-            echo "<a href='vista-alta-pokemon.php' class='enlace-grande boton-grande'><i class='material-icons'>add</i> Agregar un Pokémon</a>";
-        }
-        ?>
+        <div class="cont-agregar">
+            <?php
+            if($esAdmin){
+                echo "<a href='vista-alta-pokemon.php' class='enlace-grande boton-grande'><i class='material-icons'>add</i> Agregar un Pokémon</a>";
+            }
+            ?>
+        </div>
+
         <section id="contenedor-tarjetas">
             <?php
             if(isset($_GET['pokemonBuscado'])){

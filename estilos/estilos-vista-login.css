@@ -3,7 +3,7 @@
     background-color: #fff;
     display: block;
     padding: 1rem;
-    width: 50%;
+    width: 75%;
     border-radius: 0.5rem;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
@@ -30,7 +30,7 @@
     padding: 1rem;
     padding-right: 3rem;
     line-height: 1.25rem;
-    width: 90%;
+    width: 80%;
     border-radius: 0.5rem;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
@@ -48,6 +48,7 @@
     width: 100%;
     border-radius: 0.5rem;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .signup-link {
@@ -65,4 +66,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (min-width: 47em){
+    .form{
+        width: 50%;
+    }
+    .contenedor-input input{
+        width: 90%;
+    }
 }

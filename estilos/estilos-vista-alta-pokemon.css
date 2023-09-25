@@ -1,6 +1,7 @@
 #titulo-formulario {
     margin-bottom: 1.25em;
     font-size: 28px;
+    text-align: center;
 }
 
 form {
@@ -9,8 +10,8 @@ form {
 
 form div {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
     margin: 1.5em 0;
 }
 
@@ -23,8 +24,18 @@ form, form > div > *, input[type="submit"] {
 form, input, select {
     padding: 1em;
 }
-
-input[type="text"] {
+.cont-file{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.cont-file input{
+    font-size: 15px;
+}
+.cont-check p{
+    margin-bottom: 10px;
+}
+/*input[type="text"] {
     border-style: none none solid none;
     border-bottom: 3px solid #451952;
 }
@@ -38,17 +49,17 @@ input[type="text"], select {
     padding-bottom: 0.05em;
     border-radius: 5px 5px 0 0;
     background-color: #451952;
-}
+}*/
 select {
     border-style: none;
 
 }
 
-input[type="file"] {
+/*input[type="file"] {
     padding-bottom: 0;
 }
 
-/* input[type="submit"] {
+ input[type="submit"] {
     padding: 0.5em;
     border: 2px solid #1d1a39;
     border-radius: 5px;
@@ -64,3 +75,62 @@ input[type="submit"]:hover {
     color: #1d1a39;
     cursor: pointer;
 } */
+#label-input {
+    transition: all 0.1s ease-in-out;
+    color: #2c2c54;
+    position: absolute;
+    top: 30%;
+    left: 18px;
+    transform: scale(0.95);
+    opacity: 1;
+    pointer-events: none;
+}
+
+.input-base {
+    border-radius: 10px;
+}
+
+#nombre:focus ~ label#label-input,
+#nombre:not(:placeholder-shown) ~ #label-input {
+    top: -20% !important;
+    left: 2px !important;
+    transform: scale(0.8);
+    background: white;
+    color: black;
+    padding: 0 6px;
+    opacity: 1;
+}
+
+#nombre {
+    transition: outline 0.2s ease;
+    font-size: 1rem;
+    outline: unset;
+    border: 1px solid #bbbbbb;
+    padding: 17px 10px 10px 17px;
+    width: 75%;
+}
+
+#nombre:focus {
+    box-shadow: 0 0 0 1px #e8e8e8, 0 0 0 3px rgb(92, 127, 202);
+}
+
+.relative {
+    position: relative;
+}
+
+@media screen and (min-width: 48em){
+    form div{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    #nombre{
+        width: 25%;
+    }
+    #titulo-formulario{
+        text-align: start;
+    }
+    .cont-file{
+        display: flex;
+        align-items: center;
+    }
+}

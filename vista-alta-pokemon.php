@@ -21,30 +21,33 @@ if ( isset($_POST["nombre"]) && isset($_POST["tipos"])) {
 </head>
 <body>
     <header>
-        <h1>¡POKÉDEX!</h1>
+        <a href="index.php"><h1>¡POKÉDEX!</h1></a>
         <div>
-            <a href="" class="enlace-grande boton-grande"><i class="material-icons">person</i> Iniciar sesión</a>
+            <a href="vista-login.php" class="enlace-grande boton-grande"><i class="material-icons">person</i> Iniciar sesión</a>
         </div>
     </header>
     <main>
         <h2 id="titulo-formulario">¡Atrapá un Pokémon para tu Pokédex!</h2>
         <form action="" method="post" enctype="multipart/form-data">
-            <div>
-                <label for="nombre">Nombre:</label>
-                <input type="text" name="nombre" id="nombre">
+            <div class="relative">
+                <input class="input-cal input-base" id="nombre" placeholder="" type="text" name="nombre">
+                <label id="label-input">Nombre</label>
             </div>
-            <div>
+            <div class="cont-check">
             <p>Elegí el tipo:</p>
-                <?php while($fila = mysqli_fetch_assoc($tipos)) { ?>
-                <label for="<?php echo $fila["descripcion"]; ?>"><?php echo $fila["descripcion"]; ?></label>
-                <input type="checkbox" name="tipos[]" value="<?php echo $fila["id_tipo"]; ?>" id="<?php echo $fila["descripcion"]; ?>">
-                <?php } ?>
+                    <?php while($fila = mysqli_fetch_assoc($tipos)) { ?>
+                        <label for="<?php echo $fila["descripcion"]; ?>"><?php echo $fila["descripcion"]; ?></label>
+                        <input type="checkbox" name="tipos[]" value="<?php echo $fila["id_tipo"]; ?>" id="<?php echo $fila["descripcion"]; ?>">
+                    <?php } ?>
             </div>
-            <div>
+            <div class="cont-file">
                 <label for="foto">Foto del Pokémon:</label>
                 <input type="file" name="foto" id="foto">
             </div>
-            <input type="submit" value="¡Atrapar!" class="boton-grande">
+            <div class="cont-btn">
+                <input type="submit" value="¡Atrapar!" class="boton-grande">
+            </div>
+
         </form>
     </main>
 </body>

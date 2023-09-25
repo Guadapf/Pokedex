@@ -15,7 +15,7 @@ session_start();
 </head>
 <body>
     <header>
-        <h1>¡POKÉDEX!</h1>
+        <a href="index.php"><h1>¡POKÉDEX!</h1></a>
         <div>
             <a href="" class="enlace-grande boton-grande"><i class="material-icons">person</i> Iniciar sesión</a>
         </div>
@@ -38,7 +38,7 @@ session_start();
                 ?>
                 <button type="submit" class="submit">Iniciar</button>
                 <p class="signup-link">¿Sin cuenta?
-                    <a href="">Registrate</a>
+                    <a href="vista-register.php">Registrate</a>
                 </p>
             </form>
         </section>

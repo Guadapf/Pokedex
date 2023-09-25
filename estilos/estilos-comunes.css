@@ -13,7 +13,10 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1em;
-    padding: 1.5em;
+    padding: 1.5em 1em 1.5em 1em;
+}
+header div{
+    width: auto;
 }
 
 header h1 {
@@ -51,4 +54,13 @@ main {
     background-color: #e8bcb9;
     color: #1d1a39;
     cursor: pointer;
+}
+a{
+    text-decoration: none;
+}
+
+@media  screen and (min-width: 48em) {
+    header{
+        padding: 1.5em;
+    }
 }
