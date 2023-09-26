@@ -13,7 +13,7 @@ if (isset($usuario) && isset($pass)) {
 
     if ($usuario != $usuarioExiste["nombre"]) {
 
-        mysqli_query($conn, "insert into usuario (nombre,password) VALUES ('$usuario','$pass')");
+        mysqli_query($conn, "insert into usuario (nombre,password,rol) VALUES ('$usuario','$pass', 2)");
         $_SESSION["ok"] = "Usuario creado";
         header("location:vista-login.php");
 
